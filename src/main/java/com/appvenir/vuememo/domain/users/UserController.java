@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -41,7 +43,7 @@ public class UserController {
     //Update user
     @PutMapping("/{email}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<UserDto> updateUserUsingEmail(@PathVariable String email, @RequestBody UserDto user){
+    public ResponseEntity<UserDto> updateUserUsingEmail(@PathVariable String email,  @RequestBody @Valid UserDto user){
         UserDto foundUser = userService.updateUserUsingEmail(email, user);
         return ResponseEntity.ok().body(foundUser);
     }
