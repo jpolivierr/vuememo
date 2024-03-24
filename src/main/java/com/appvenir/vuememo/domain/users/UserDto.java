@@ -37,4 +37,5 @@ public class UserDto {
         this.lastName = user.getLastName();
         this.email = user.getEmail();
     }
+    
 }

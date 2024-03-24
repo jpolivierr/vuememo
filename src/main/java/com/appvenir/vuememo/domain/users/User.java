@@ -35,5 +35,11 @@ public class User extends BaseEntity{
     @NotBlank(message = "Email cannot be empty")
     @Column(nullable = false, name = "email", unique = true)
     private String email;
+
+    public User(String firstName, String lastName, String email){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }   
     
 }
