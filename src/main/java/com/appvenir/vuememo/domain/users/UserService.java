@@ -48,7 +48,7 @@ public class UserService {
      }
 
     @Transactional
-    public UserDto updateUserUsingEmail(String email, UserDto user){
+    public UserDto updateUserUsingEmail(String email, User user){
 
         User foundUser = findByEmail(email);
 

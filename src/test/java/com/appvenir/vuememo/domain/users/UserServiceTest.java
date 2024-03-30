@@ -3,7 +3,6 @@ package com.appvenir.vuememo.domain.users;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -64,7 +63,7 @@ public class UserServiceTest {
         String originalEmail = "jp@gmail.com";
         User existingUser = new User("Freddy", "Olivier",originalEmail);
 
-        UserDto userDto = new UserDto(new User("Fred", "Jean","jpolivier@gmail.com"));
+        User userDto = new User("Fred", "Jean","jpolivier@gmail.com");
 
         when(userRepository.findByEmail(originalEmail)).thenReturn(Optional.of(existingUser));
         when(userRepository.save(any(User.class))).thenAnswer(i -> i.getArguments()[0]);

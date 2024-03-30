@@ -39,7 +39,9 @@ public class UserController {
     //Update user
     @PutMapping("/{email}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<UserDto> updateUserUsingEmail(@PathVariable String email,  @RequestBody @Valid UserDto user){
+    public ResponseEntity<UserDto> updateUserUsingEmail(@PathVariable String email,  @RequestBody @Valid User user){
+        UserValidator userValidator = new UserValidator(user);
+        userValidator.validate();
         UserDto foundUser = userService.updateUserUsingEmail(email, user);
         return ResponseEntity.ok().body(foundUser);
     }

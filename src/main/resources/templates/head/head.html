@@ -1,0 +1,14 @@
+<head>
+    <meta charset="UTF-8">
+
+    <link 
+        th:each="link : ${linkTags}"
+        th:rel="${link.getRel}"
+        th:href="${link.getHref}"
+        th:type="${link.getType}"
+        th:sizes="${link.getSizes}"
+    >
+
+    <title th:text="${props.getTitle}"></title>
+
+</head>
