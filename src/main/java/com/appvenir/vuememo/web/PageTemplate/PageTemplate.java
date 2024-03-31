@@ -1,7 +1,4 @@
-package com.appvenir.vuememo.web.template;
-
-import java.util.function.Function;
-import java.util.function.Supplier;
+package com.appvenir.vuememo.web.PageTemplate;
 
 import org.springframework.ui.Model;
 
@@ -12,7 +9,6 @@ public abstract class PageTemplate {
 
     public PageTemplate(String title){
         this.pageAttribute = new PageAttribute(title);
-        // setPageAttributes();
     }
 
     public String renderPage(String pageName, Model model){

@@ -14,5 +14,11 @@ public abstract class ValidationMethods {
         return GenericValidator.minLength((String) text, minimum);
    }
 
+    public boolean isNotNull(String text) {
+        return text != null && !text.isEmpty();
+    }
+
+
+
     
 }

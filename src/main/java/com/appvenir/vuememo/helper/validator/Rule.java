@@ -7,54 +7,41 @@ import lombok.Getter;
 
 
 @Getter
-public class Rule {
+public class Rule extends ValidationMethods {
 
         private final String field;
-        private final Object value;
+        private final String value;
         public List<String> errors;
 
-        private Rule(Builder builder){
-            this.field = builder.getField();
-            this.value = builder.getValue();
-            this.errors = builder.getErrors();
+        public Rule(String field, String value){
+            this.field = field;
+            this.value = value;
+            this.errors = new ArrayList<>();
         }
 
-        @Getter
-        public static class Builder extends ValidationMethods{
+        public Rule isValidEmail(String message) {
+            var expresion = super.validateEmail(value);
+            isValid(expresion, message);
+            return this;
+        }
 
-                private String field;
-                private Object value;
-                public List<String> errors = new ArrayList<>();
+        public Rule minChar(int minimum, String message) {
+            var expresion = super.minChar(value, minimum);
+            isValid(expresion, message);
+            return this;
+        }
 
-                public Builder set(String field, Object value){
-                    this.field = field;
-                    this.value = value;
-                    return this;
-                }
+        public Rule notNull(String message) {
+            var expresion = super.isNotNull(value);
+            isValid(expresion, message);
+            return this;
+        }
 
-                public Builder  isValidEmail() {
-                    var expresion = super.validateEmail(value);
-                    isValid(expresion, "Email is not valid");
-                    return this;
-                }
-
-                public Builder minChar(int minimum) {
-                    var expresion = super.minChar(value, minimum);
-                    isValid(expresion, "Must be 8 character long");
-                    return this;
-                }
-
-                private void isValid(Boolean expresion, String value){
-                    if(!expresion){
-                        errors.add(value);
-                    }
-                }
-
-                public Rule build(){
-                    return new Rule(this);
-                }
-
-        } 
+        private void isValid(Boolean expresion, String message){
+            if(!expresion){
+                errors.add(message);
+            }
+        }
 
 
 }

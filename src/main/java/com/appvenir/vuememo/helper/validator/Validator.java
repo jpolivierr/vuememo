@@ -2,22 +2,15 @@ package com.appvenir.vuememo.helper.validator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-import org.apache.commons.validator.GenericValidator;
-import org.apache.commons.validator.routines.EmailValidator;
 
 import com.appvenir.vuememo.exception.validationException.ValidationException;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 public abstract class Validator {
 
     private HashMap<String,String> errors = new HashMap<>();
-    private Set<Rule> rules = new HashSet<>();
+    private List<Rule> rules = new ArrayList<>();
 
     public abstract void rules();
 
@@ -25,8 +18,14 @@ public abstract class Validator {
         this.rules.add(rule);
     }
 
-    public void addRule(Set<Rule> rules){
+    public void addRule(List<Rule> rules){
         this.rules = rules;
+    }
+
+    public void addRule(Rule ...ruleArray){
+        for(Rule rule : ruleArray){
+            this.rules.add(rule);
+        }
     }
 
     public void validate(){

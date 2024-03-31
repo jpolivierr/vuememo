@@ -1,4 +1,4 @@
-package com.appvenir.vuememo.web.template;
+package com.appvenir.vuememo.web.PageTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +32,10 @@ public class PageAttribute {
 
     public void addLink(LinkTag linkTag){
         this.links.add(linkTag);
+    }
+
+    public void addLink(List<LinkTag> linkTags){
+        this.links = linkTags;
     }
 
     @Data

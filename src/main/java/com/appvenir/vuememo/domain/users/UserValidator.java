@@ -1,5 +1,7 @@
 package com.appvenir.vuememo.domain.users;
 
+import java.util.Set;
+
 import com.appvenir.vuememo.helper.validator.Rule;
 import com.appvenir.vuememo.helper.validator.Validator;
 
@@ -13,18 +15,21 @@ public class UserValidator extends Validator {
     private final User user;
    
     public void rules(){
-        String firstName = user.getFirstName();
 
-        Rule emailRule = new Rule.Builder()
-                        .set("Email", user.getEmail())
-                        .isValidEmail()
-                        .minChar(10)
-                        .build();
+        Rule firstNameRule = new Rule("firstName", user.getFirstName())
+                                .notNull("First name is required");
 
-        addRule(emailRule);                
+        Rule lastNameRule = new Rule("lastName", user.getLastName())
+                                .notNull("Last name is required");
 
-        // isValidEmail(email, "Email");
-        // minChar(firstName, "firstName", 8);
+        Rule emailRule = new Rule("email", user.getEmail())
+                                .isValidEmail("Email is not valid");
+
+        Rule passwordRule = new Rule("password", user.getPassword())
+                                .minChar(8, "Password must be " + 8 + " character long minimum");
+
+        addRule(firstNameRule, lastNameRule, emailRule, passwordRule);                
+
     }
 
     

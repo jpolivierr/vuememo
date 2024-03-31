@@ -26,6 +26,8 @@ public class UserController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void saveUser(@RequestBody User user){
+        UserValidator userValidator = new UserValidator(user);
+        userValidator.validate();
         userService.saveUser(user);
     }
 
@@ -40,8 +42,6 @@ public class UserController {
     @PutMapping("/{email}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<UserDto> updateUserUsingEmail(@PathVariable String email,  @RequestBody @Valid User user){
-        UserValidator userValidator = new UserValidator(user);
-        userValidator.validate();
         UserDto foundUser = userService.updateUserUsingEmail(email, user);
         return ResponseEntity.ok().body(foundUser);
     }

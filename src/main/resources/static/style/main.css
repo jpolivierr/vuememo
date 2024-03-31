@@ -9,7 +9,9 @@
     --silver-text-color: #5f6b82;
     --light-text-color: #455368;
 
-    --shadow: 0 10px 25px #7b68ee80;;
+    --shadow: 0 10px 25px #7b68ee80;
+
+    --error-color: #f94f4f;
 }
 
 *{
@@ -115,5 +117,16 @@ li{
 .link-style{
     color:var(--option-color);
     cursor: pointer;
+}
+
+
+.input-error input{
+    border: 2px solid var(--error-color) !important;
+}
+
+.input-error span{
+    color: var(--error-color);
+    font-size: 12px;
+    margin-top: .5rem;
 }
 

@@ -1,4 +1,4 @@
-package com.appvenir.vuememo.web.template;
+package com.appvenir.vuememo.web.PageTemplate;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
