@@ -8,6 +8,7 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -55,6 +56,22 @@ public class UserExceptionHandler {
                                             .build();
 
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST); 
+    }
+
+    @ExceptionHandler(value = {UsernameNotFoundException.class})
+    public ResponseEntity<Object> userNameNotFoundExceptionHandler (UsernameNotFoundException ex, HttpServletRequest request){
+
+        ErrorResponse errorResponse = ErrorResponse.builder()
+                                            .timestamp(LocalDateTime.now())
+                                            .status(HttpStatus.BAD_REQUEST.value())
+                                            .error(HttpStatus.BAD_REQUEST.getReasonPhrase())
+                                            .message(ex.getMessage())
+                                            .path(request.getRequestURI())
+                                            .build();
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+
+
     }
     
 }

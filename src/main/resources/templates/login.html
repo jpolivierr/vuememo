@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<fragment th:replace="~{head/head}"></fragment>
+<body>
+
+    <section>
+       
+        <div class="container">
+            <form class="form-avalon margin-auto" th:action="@{/login}" th:object="${user}" method="post">
+                <div class="from-error-message">
+                    <span class="error-message" th:text="${formError['authFailure']}"></span>
+                </div>
+                <header>
+                    <h2>Login</h2>
+                </header>
+
+                <div class="field-set"
+                     th:classappend="${formError.containsKey('email') ? 'input-error' : ''}"
+                >
+                    <label for="email">Email</label>
+                    <input type="email" 
+                           id="email" 
+                           name="email" 
+                           th:field="*{email}" placeholder="example@business.com" 
+                           />
+                    <span class="error-message" th:text="${formError['email']}"></span>
+                </div>
+
+                <div class="field-set"
+                     th:classappend="${formError.containsKey('password') ? 'input-error' : ''}"
+                >
+                    <label for="password">Password</label>
+                    <input type="password" 
+                           id="password" 
+                           name="password" 
+                           placeholder="Minimum 8 characters"  
+                           />
+                    <span class="error-message" th:text="${formError['password']}"></span>
+                </div>
+                <div>
+                    <button class="button main-button" type="submit">Login</button>
+                </div>
+                <footer>
+                    <p>Forgot password?</p>
+                </footer>
+            </form>
+        </div>
+
+
+    </section>
+
+    
+</body>
+</html>

@@ -2,11 +2,14 @@ package com.appvenir.vuememo.domain.users;
 
 import java.util.Optional;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.appvenir.vuememo.exception.user.EmailExistsException;
 import com.appvenir.vuememo.exception.user.UserNotFoundException;
 
+import jakarta.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -16,14 +19,23 @@ public class UserService {
     private final UserRepository userRepository;
 
     public void saveUser(User user){
-
+       
         userRepository.save(user);
 
     }
 
     public User savedUser(User user){
 
-        return userRepository.save(user);
+        try {
+
+            return userRepository.save(user);
+
+        } catch (ConstraintViolationException | DataIntegrityViolationException e) {
+            
+            throw new EmailExistsException();
+
+        }
+        
 
     }
 
