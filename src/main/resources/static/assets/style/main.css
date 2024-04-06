@@ -25,6 +25,10 @@ body{
     color: var(--silver-text-color);
 }
 
+p{
+    font-size: 14px;
+}
+
 h2{
     margin-bottom: 1rem;
 }
@@ -41,7 +45,7 @@ h2{
     margin-bottom: 1.25rem;
 }
 
-.form-avalon header{
+.form-avalon .form-header{
     margin-bottom: 2.3rem;
 }
 
@@ -72,6 +76,15 @@ h2{
     width: 100%;
     margin-top: .7rem;
 }
+
+.form-avalon .from-error-message{
+    padding: 1rem;
+    margin-bottom: 1rem;
+    color: var(--error-color);
+    font-size: 14px;
+    background: #ffe9e9;
+}
+
 
 .container{
     width: 90%;

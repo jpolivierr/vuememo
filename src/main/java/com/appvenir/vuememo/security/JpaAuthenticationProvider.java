@@ -26,16 +26,11 @@ public class JpaAuthenticationProvider implements AuthenticationProvider {
         // Will throw a UserNotFoundException if the user is not found
         UserDetails userDetauDetails = userDataService.loadUserByUsername(email);
 
-        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.");
-        System.out.println("validating user");
         if(!password.equals(userDetauDetails.getPassword())) {
-            System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.");
-        System.out.println("INVALID CREDENTIALS......");
              throw new BadCredentialsException("Invalid credentials");
         }
-        System.out.println("###################################.");
-        System.out.println("Authentication successful..");
-        return new UsernamePasswordAuthenticationToken(userDetauDetails, password);
+
+        return new UsernamePasswordAuthenticationToken(userDetauDetails, password, userDetauDetails.getAuthorities());
     }
 
     @Override

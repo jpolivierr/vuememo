@@ -1,5 +1,6 @@
 package com.appvenir.vuememo.domain.users;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class UserSecurity implements UserDetails{
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-         return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+         return new ArrayList<>();
     }
 
     @Override

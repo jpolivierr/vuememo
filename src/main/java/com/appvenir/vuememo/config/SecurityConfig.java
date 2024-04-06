@@ -7,13 +7,15 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
+import com.appvenir.vuememo.security.UserAuthenticationFailure;
+
 import lombok.RequiredArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
@@ -26,9 +28,15 @@ public class SecurityConfig {
                     .formLogin( login -> {
                         login.loginPage("/login")
                              .usernameParameter("email")
-                             .defaultSuccessUrl("/dashboard", true)
-                             .failureUrl("/login?error=true");
+                             .defaultSuccessUrl("/dashboard")
+                             .failureHandler(new UserAuthenticationFailure());
                         })
+                    .logout( logout -> {
+                        logout.logoutUrl("/logout")
+                              .logoutSuccessUrl("/login?logout")
+                              .deleteCookies("JSESSIONID")
+                              .invalidateHttpSession(true);
+                    })    
                     .headers( headers -> headers.frameOptions( option -> option.sameOrigin()))
                     .build(); 
     }
@@ -41,6 +49,8 @@ public class SecurityConfig {
 
     public String[] allowedPath(){
         return new String[]{
+                            "/error",
+                            "/logout?**",
                             "/signup/**",
                             "/login/**",
                             "/assets/**"

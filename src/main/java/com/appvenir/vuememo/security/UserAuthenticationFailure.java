@@ -18,7 +18,8 @@ public class UserAuthenticationFailure extends SimpleUrlAuthenticationFailureHan
         AuthenticationException exception
         ) throws IOException, ServletException {
        
-        String failureUrl = "/login?error=true&exception=" + exception.getMessage();
+        String email = request.getParameter("email");
+        String failureUrl = "/login?error=true&email="+ email +"&message=" + exception.getMessage();
         super.setDefaultFailureUrl(failureUrl);
         super.onAuthenticationFailure(request, response, exception);
             

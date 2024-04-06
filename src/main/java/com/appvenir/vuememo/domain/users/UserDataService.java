@@ -20,8 +20,6 @@ public class UserDataService implements UserDetailsService{
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         
-        System.out.println("###################################.");
-        System.out.println("Loading user: " + email);
 
         return userRepository.findByEmail(email)
                             .map(UserSecurity::new)

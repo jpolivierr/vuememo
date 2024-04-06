@@ -7,18 +7,17 @@
        
         <div class="container">
             <form class="form-avalon margin-auto" th:action="@{/login}" th:object="${user}" method="post">
-                <div class="from-error-message">
-                    <span class="error-message" th:text="${formError['authFailure']}"></span>
-                </div>
-                <header>
+
+                <div class="form-header">
                     <h2>Login</h2>
-                </header>
+                </div>
 
                 <div class="field-set"
                      th:classappend="${formError.containsKey('email') ? 'input-error' : ''}"
                 >
                     <label for="email">Email</label>
-                    <input type="email" 
+                    <input 
+                           type="email" 
                            id="email" 
                            name="email" 
                            th:field="*{email}" placeholder="example@business.com" 
@@ -37,12 +36,20 @@
                            />
                     <span class="error-message" th:text="${formError['password']}"></span>
                 </div>
+
+                <div 
+                th:classappend="${formError.containsKey('authFailure') ? 'from-error-message' : ''}"
+                th:text="${formError['authFailure']}"
+                >
+
+              </div>
+
                 <div>
                     <button class="button main-button" type="submit">Login</button>
                 </div>
-                <footer>
+                <div class="form-footer">
                     <p>Forgot password?</p>
-                </footer>
+                </div>
             </form>
         </div>
 

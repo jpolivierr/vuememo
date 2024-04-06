@@ -24,14 +24,22 @@ public class Login extends PageTemplate {
     }
 
     @GetMapping
-    public String index(@RequestParam(required = false) boolean error,Model model){
+    public String index(
+        @RequestParam(required = false) boolean error,
+        @RequestParam(required = false) String email,
+        Model model
+        ){
+
         var formError = new HashMap<>();
         
         if(error){
           formError.put("authFailure", "Invalid credentials");
         }
 
-        model.addAttribute("user", new User());
+        User user = new User();
+        user.setEmail(email);
+
+        model.addAttribute("user", user);
         model.addAttribute("formError", formError);
         return renderPage("login", model);
     }
