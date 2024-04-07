@@ -18,18 +18,11 @@ import lombok.ToString;
 @AllArgsConstructor
 public class UserDto {
     
-    @NotBlank(message = "First name cannot be empty")
-    @Size(min = 2, message = "First name must be at least 2 characters long")
-    @Size(max = 20, message = "First name must be at most 20 characters long")
+
     private String firstName;
 
-    @NotBlank(message = "Last name cannot be empty")
-    @Size(min = 2, message = "Last name must be at least 2 characters long")
-    @Size(max = 20, message = "Last name must be at most 20 characters long")
     private String lastName;
 
-    @Email(message = "Not a valid email")
-    @NotBlank(message = "Email cannot be empty")
     private String email;
 
     public UserDto(User user){

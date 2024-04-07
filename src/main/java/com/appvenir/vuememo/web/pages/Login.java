@@ -27,11 +27,17 @@ public class Login extends PageTemplate {
     public String index(
         @RequestParam(required = false) boolean error,
         @RequestParam(required = false) String email,
+        @RequestParam(required = false) String emailError,
+        @RequestParam(required = false) String passwordError,
         Model model
         ){
 
         var formError = new HashMap<>();
+
+        if(emailError != null) formError.put("email", emailError);
         
+        if(passwordError != null) formError.put("password", passwordError);
+
         if(error){
           formError.put("authFailure", "Invalid credentials");
         }

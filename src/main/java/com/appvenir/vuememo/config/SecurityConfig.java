@@ -7,7 +7,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.appvenir.vuememo.filter.LoginFilter;
 import com.appvenir.vuememo.security.UserAuthenticationFailure;
 
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,7 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         return http
+                    .addFilterBefore(new LoginFilter(), UsernamePasswordAuthenticationFilter.class)
                     .authorizeHttpRequests( auth -> auth
                                        .requestMatchers(allowedPath()).permitAll()
                                        .anyRequest().authenticated()

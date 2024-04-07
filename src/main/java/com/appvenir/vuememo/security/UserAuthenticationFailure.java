@@ -22,7 +22,6 @@ public class UserAuthenticationFailure extends SimpleUrlAuthenticationFailureHan
         String failureUrl = "/login?error=true&email="+ email +"&message=" + exception.getMessage();
         super.setDefaultFailureUrl(failureUrl);
         super.onAuthenticationFailure(request, response, exception);
-            
 
     }
     
