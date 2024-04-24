@@ -43,8 +43,8 @@ public class SignUp extends PageTemplate {
         model.addAttribute("user", user);
         try {
             userValidator.validate();
-            userService.savedUser(user);
-            return "redirect:/dashboard";
+            userService.saveUser(user);
+            return "redirect:/login";
         } 
         catch (EmailExistsException e) {
             model.addAttribute("formError", Map.of("email", "Email already exists"));

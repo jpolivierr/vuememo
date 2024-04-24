@@ -27,11 +27,11 @@ public class UserServiceTest {
     @Test
     void savedUser_should_return_User_Object(){
         
-        User user = new User("FreddyTest", "Olivier","jp@gmail.com");
+        User user = new User("FreddyTest","jp@gmail.com");
 
         when(userRepository.save(any(User.class))).thenReturn(user);
 
-        User savedUser = userService.savedUser(user);
+        User savedUser = userService.saveUser(user);
 
         assertNotNull(savedUser, "Saved user should not be null");
         assertEquals(user, savedUser, "Saved user should match the input user");
@@ -43,7 +43,7 @@ public class UserServiceTest {
     @Test
     void findUserByEmail_should_return_UserDto_when_user_exists(){
 
-        User user = new User("Freddy", "Olivier","jp@gmail.com");
+        User user = new User("Freddy","jp@gmail.com");
 
         UserDto userDto = new UserDto(user);
 
@@ -61,9 +61,9 @@ public class UserServiceTest {
     void updateUserUsingEmail_should_update_existing_user(){
 
         String originalEmail = "jp@gmail.com";
-        User existingUser = new User("Freddy", "Olivier",originalEmail);
+        User existingUser = new User("Freddy",originalEmail);
 
-        User userDto = new User("Fred", "Jean","jpolivier@gmail.com");
+        User userDto = new User("Fred","jpolivier@gmail.com");
 
         when(userRepository.findByEmail(originalEmail)).thenReturn(Optional.of(existingUser));
         when(userRepository.save(any(User.class))).thenAnswer(i -> i.getArguments()[0]);
@@ -73,8 +73,7 @@ public class UserServiceTest {
         verify(userRepository, times(1)).findByEmail(originalEmail);
         verify(userRepository, times(1)).save(any(User.class));
 
-        assertEquals(userDto.getFirstName(), updatedUserDto.getFirstName());
-        assertEquals(userDto.getLastName(), updatedUserDto.getLastName());
+        assertEquals(userDto.getName(), updatedUserDto.getName());
         assertEquals(userDto.getEmail(), updatedUserDto.getEmail());
 
     }

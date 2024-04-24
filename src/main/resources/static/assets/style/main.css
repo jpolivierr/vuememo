@@ -9,8 +9,8 @@
     --silver-text-color: #5f6b82;
     --light-text-color: #455368;
 
-    --shadow: 0 10px 25px #7b68ee80;
-
+    /* --shadow: 0 10px 25px #7b68ee80; */
+    --shadow: 0 5px 15px #7b68ee80;
     --error-color: #f94f4f;
 }
 
@@ -25,8 +25,18 @@ body{
     color: var(--silver-text-color);
 }
 
-p{
+a{
+    cursor: pointer;
+    color: var(--main-color);
+    text-decoration: none;
+}
+
+p,h4,h5{
     font-size: 14px;
+}
+
+h4{
+    font-weight: 500;
 }
 
 h2{
@@ -42,7 +52,7 @@ h2{
 .form-avalon .field-set{
     display: flex;
     flex-flow: column;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
 }
 
 .form-avalon .form-header{
@@ -83,6 +93,35 @@ h2{
     color: var(--error-color);
     font-size: 14px;
     background: #ffe9e9;
+}
+
+.form-avalon .login-setting{
+    display: grid;
+    grid-template-columns: max-content max-content 1fr;
+    gap: .5rem;
+    margin-bottom: .8rem;
+}
+
+.form-avalon .login-setting h4{
+    font-size: 13px;
+}
+
+.form-avalon .login-setting input[type="checkbox"]{
+    display: none;
+}
+
+.form-avalon .login-setting .check-box{
+    color: var(--main-color);
+}
+
+.form-avalon .login-setting h4:nth-child(3){
+    display: flex;
+    justify-content: flex-end;
+    color: var(--main-color);
+}
+
+.form-avalon .form-footer{
+    margin-top: 2rem;
 }
 
 
@@ -131,7 +170,6 @@ li{
     color:var(--option-color);
     cursor: pointer;
 }
-
 
 .input-error input{
     border: 2px solid var(--error-color) !important;

@@ -7,35 +7,23 @@
        
         <div class="container">
             <form class="form-avalon margin-auto" th:action="@{/signup}" th:object="${user}" method="post">
-                <header>
+                <div class="form-header">
                     <h2>Create a new account</h2>
-                    <p style="font-size: 14px;">Already have an account? <a class="link-style">Login.</a></p>
-                </header>
+                    <p style="font-size: 14px;">Already have an account? <a href="/login" class="link-style">Login.</a></p>
+                </div>
                 
                 <div class="field-set"
-                     th:classappend="${formError.containsKey('firstName') ? 'input-error' : ''}"
+                     th:classappend="${formError.containsKey('name') ? 'input-error' : ''}"
                 >
-                    <label for="name">First name</label>
+                    <label for="name">Full name</label>
                     <input 
                             type="text" 
-                            id="first_name" 
-                            name="first_name" 
-                            th:field="*{firstName}" 
-                            placeholder="John"
+                            id="full_name" 
+                            name="name" 
+                            th:field="*{name}" 
+                            placeholder="John Smith"
                             />
-                    <span class="error-message" th:text="${formError['firstName']}"></span>
-                </div>
-
-                <div class="field-set"
-                     th:classappend="${formError.containsKey('lastName') ? 'input-error' : ''}"
-                >
-                    <label for="name">Last name</label>
-                    <input type="text" 
-                           id="last_name" 
-                           name="last_name" 
-                           th:field="*{lastName}" placeholder="Smith"
-                           />
-                    <span class="error-message" th:text="${formError['lastName']}"></span>
+                    <span class="error-message" th:text="${formError['name']}"></span>
                 </div>
 
                 <div class="field-set"
@@ -53,7 +41,7 @@
                 <div class="field-set"
                      th:classappend="${formError.containsKey('password') ? 'input-error' : ''}"
                 >
-                    <label for="password">Choose a Password</label>
+                    <label for="password">Password</label>
                     <input type="password" 
                            id="password" 
                            name="password" 

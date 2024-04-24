@@ -18,13 +18,7 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public void saveUser(User user){
-       
-        userRepository.save(user);
-
-    }
-
-    public User savedUser(User user){
+    public User saveUser(User user){
 
         try {
 
@@ -64,8 +58,7 @@ public class UserService {
 
         User foundUser = findByEmail(email);
 
-        foundUser.setFirstName(user.getFirstName());
-        foundUser.setLastName(user.getLastName());
+        foundUser.setName(user.getName());
         foundUser.setEmail(user.getEmail());
 
         return new UserDto(userRepository.save(foundUser));

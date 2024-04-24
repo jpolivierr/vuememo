@@ -1,6 +1,6 @@
 package com.appvenir.vuememo.domain.users;
 
-import com.appvenir.vuememo.entity.baseEntity.BaseEntity;
+import com.appvenir.vuememo.domain.baseEntity.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,12 +18,8 @@ import lombok.ToString;
 @NoArgsConstructor
 public class User extends BaseEntity{
 
-
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(name = "name")
+    private String name;
 
 
     @Column(nullable = false, name = "email", unique = true)
@@ -33,9 +29,8 @@ public class User extends BaseEntity{
     private String password;
     
 
-    public User(String firstName, String lastName, String email){
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(String name, String email){
+        this.name = name;
         this.email = email;
     }   
     

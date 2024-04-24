@@ -16,11 +16,8 @@ public class UserValidator extends Validator {
    
     public List<Rule> rules(){
 
-        Rule firstNameRule = new Rule("firstName", user.getFirstName())
-                                .notNull("First name is required");
-
-        Rule lastNameRule = new Rule("lastName", user.getLastName())
-                                .notNull("Last name is required");
+        Rule name = new Rule("name", user.getName())
+                                .notNull("Full name is required");
 
         Rule emailRule = new Rule("email", user.getEmail())
                                 .isValidEmail("Email is not valid");
@@ -29,7 +26,7 @@ public class UserValidator extends Validator {
                                  .notNull("Password is required");
 
 
-        return List.of(firstNameRule, lastNameRule, emailRule, passwordRule);                
+        return List.of(name, emailRule, passwordRule);                
 
     }
 

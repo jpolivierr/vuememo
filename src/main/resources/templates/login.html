@@ -40,15 +40,27 @@
                 <div 
                 th:classappend="${formError.containsKey('authFailure') ? 'from-error-message' : ''}"
                 th:text="${formError['authFailure']}"
-                >
+                ></div>
 
-              </div>
+                <div class="login-setting field-set">
+                
+                    <div>
+                        <i class="fa-solid fa-square-check check-box"></i>
+                        <input type="checkbox" name="remember-me" checked>
+                    </div>
+                    
+                    <h4>Remember me</h4>
+
+                    <h4><a>Forget password?</a></h4>
+                      
+                </div>
 
                 <div>
                     <button class="button main-button" type="submit">Login</button>
                 </div>
+
                 <div class="form-footer">
-                    <p>Forgot password?</p>
+                  <h4>Not registered yet? <a href="/signup">Create an Account</a></h4>
                 </div>
             </form>
         </div>

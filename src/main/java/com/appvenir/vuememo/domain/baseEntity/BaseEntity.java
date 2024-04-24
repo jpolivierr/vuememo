@@ -1,4 +1,4 @@
-package com.appvenir.vuememo.entity.baseEntity;
+package com.appvenir.vuememo.domain.baseEntity;
 
 import java.time.LocalDateTime;
 
