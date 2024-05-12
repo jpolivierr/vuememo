@@ -23,8 +23,8 @@ public class UserValidator extends Validator {
                                 .isValidEmail("Email is not valid");
 
         Rule passwordRule = new Rule("password", user.getPassword())
-                                 .notNull("Password is required");
-
+                                 .notNull("Password is required")
+                                 .minChar(8, "Password must contain 8 characters minimum");
 
         return List.of(name, emailRule, passwordRule);                
 

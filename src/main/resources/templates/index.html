@@ -1,11 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-</head>
+<fragment th:replace="~{head/head}"></fragment>
 <body>
-    <h1>Success</h1>
+
+    <fragment th:replace="~{navigation/main-navigation}"></fragment>
+
+    <section class="padding-top-medium padding-bottom-large">
+        <div class="container center-text">
+            <h1>Your All-in-One Task <br> <span class="main-text-color">Management</span> Solution </h1>
+            <h4 class="center-content">Your workflow take control of your tasks, boost productivity, and achive success with our comprehensive and intuitive Task Management Solution</h4>
+            <div class="cta-container margin-top-medium center-content justify-center">
+                <a th:href="@{/signup}">
+                   <button class="button main-button">
+                    Get Started. It's FREE
+                    <i class="fa-solid fa-arrow-right-long margin-left-small"></i>
+                </button>
+                </a>
+
+                <a th:href="@{/}">
+                    <button class="button alt-button">
+                     See a Demo
+                 </button>
+                 </a>
+                
+            </div>
+            <figure class="margin-top-large center-content">
+                <img src="https://clickup.com/assets/home-test/projects.png" />
+            </figure>
+        </div>
+    </section>
+
+    <section class="padding-up-down-large padding-top-large light-bk">
+        <div class="container flex-2-columns flex-gap-large">
+            <div>
+                <h2>Hit every deadline</h2>
+                <p>
+                    Link notes containing important action items to your calendar events, and Evernote will surface the info you need—right when you need it.
+                </p>
+                <div class="cta-container margin-top-medium">
+                    <a th:href="@{/signup}">
+                       <button class="button main-button">
+                        Get Started. It's FREE
+                        <i class="fa-solid fa-arrow-right-long margin-left-small"></i>
+                    </button>
+                    </a>
+    
+                    <a th:href="@{/}">
+                        <button class="button alt-button">
+                         See a Demo
+                     </button>
+                     </a>
+                    
+                </div>
+            </div>
+
+            <figure class="max-width-large center-content">
+                <img src="https://clickup.com/assets/home-test/projects.png" />
+            </figure>
+
+        </div>
+    </section>
 </body>
 </html>

@@ -3,6 +3,8 @@
 <fragment th:replace="~{head/head}"></fragment>
 <body>
 
+    <fragment th:replace="~{navigation/main-navigation}"></fragment>
+
     <section>
        
         <div class="container">
@@ -51,7 +53,7 @@
                     
                     <h4>Remember me</h4>
 
-                    <h4><a>Forget password?</a></h4>
+                    <h4><a class="main-text-color">Forget password?</a></h4>
                       
                 </div>
 
@@ -60,7 +62,7 @@
                 </div>
 
                 <div class="form-footer">
-                  <h4>Not registered yet? <a href="/signup">Create an Account</a></h4>
+                  <h4>Not registered yet? <a class="main-text-color" th:href="@{/signup}">Create an Account</a></h4>
                 </div>
             </form>
         </div>

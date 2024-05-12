@@ -2,8 +2,12 @@
 
 :root{
 
-    --main-color: rgb(123, 104, 238);
+    /* --main-color: rgb(123, 104, 238); */
+    --main-color: rgb(98, 78, 223);
+    --light-purple: rgba(98, 78, 223, 0.1);
     --option-color: #46a6df;
+
+    --bk-light: #f2f6f9b0;
 
     --dark-text-color: #374253;
     --silver-text-color: #5f6b82;
@@ -12,6 +16,8 @@
     /* --shadow: 0 10px 25px #7b68ee80; */
     --shadow: 0 5px 15px #7b68ee80;
     --error-color: #f94f4f;
+
+    --text-line-height: 1.9
 }
 
 *{
@@ -19,6 +25,11 @@
     padding: 0;
     box-sizing: border-box;
 }
+/* 
+==================================
+TAGS
+==================================
+*/
 
 body{
     font-family: 'Inter', sans-serif;
@@ -27,21 +38,51 @@ body{
 
 a{
     cursor: pointer;
-    color: var(--main-color);
     text-decoration: none;
+    color: inherit;
 }
 
-p,h4,h5{
-    font-size: 14px;
+li{
+    list-style: none;
+}
+
+h1,h2,h3{
+    font-weight: 600;
+    color: var(--dark-text-color);
+}
+
+h1{
+    font-size: 3.5rem;
+    line-height: 1.3;
+    font-weight: 600;
+    margin-bottom: 1.3rem;
 }
 
 h4{
-    font-weight: 500;
+    font-weight: 400;
+    max-width: 700px;
+    line-height: var(--text-line-height);
+    font-size: 20px;
 }
 
 h2{
+    font-size: 3rem;
     margin-bottom: 1rem;
 }
+
+p{
+  line-height: var(--text-line-height);
+}
+
+figure img {
+    width: 100%;
+}
+
+/* 
+==================================
+FORM 
+==================================
+*/
 
 .form-avalon {
   max-width: 400px;
@@ -64,6 +105,10 @@ h2{
     color: var(--dark-text-color);
     margin-bottom: .6rem;
     font-size: 1.8rem;
+}
+
+.form-avalon p, .form-avalon h4, .form-avalon h5{
+    font-size: 14px;
 }
 
 .form-avalon label{
@@ -124,10 +169,31 @@ h2{
     margin-top: 2rem;
 }
 
+/* 
+==================================
+UTILITIES
+==================================
+*/
+
+.justify-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.border-bottom{
+    border-bottom: 1px solid var(--light-purple);
+}
+
+.main-text-color{
+    color: var(--main-color);
+}
+
 
 .container{
-    width: 90%;
+    width: 80%;
     margin: auto;
+    max-width: 1324px;
 }
 
 .section{
@@ -139,14 +205,9 @@ h2{
     grid-template-columns: 1fr 1fr;
 }
 
-li{
-    list-style: none;
-    margin-bottom: .5rem;
-}
-
 .button{
     border-radius: 5px;
-    padding: .9rem .8rem;
+    padding: .9rem 1.5rem;
     border: none;
     cursor: pointer;
     font-weight: bold;
@@ -157,9 +218,33 @@ li{
     box-shadow: var(--shadow)
 }
 
-.center-content{
+.secondary-button{
+    background: transparent;
+    color: var(--silver-text-color);
+}
+
+.alt-button{
+    background: transparent;
+    border: 1px solid #cdc9e3;
+    color: var(--silver-text-color);
+}
+
+.buttons-wrapper{
     display: flex;
-    justify-content: center;
+    gap: 1rem;
+}
+
+.cta-container{
+    display: flex;
+    gap: 1rem;
+}
+
+.center-content{
+    margin: auto;
+}
+
+.center-text{
+    text-align: center;
 }
 
 .margin-auto{
@@ -181,3 +266,105 @@ li{
     margin-top: .5rem;
 }
 
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 0rem;
+}
+
+.main-header .nav-links{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    transition: color .3s;
+}
+
+.main-header .nav-links li:hover{
+    color: var(--main-color);
+}
+
+.round-border{
+    border-radius: 100px;
+    padding: 1rem 1.5rem;
+}
+
+/* 
+==================================
+BACKGROUND
+==================================
+*/
+
+.light-bk{
+    background: var(--bk-light);
+}
+
+
+/* 
+==================================
+WIDTH
+==================================
+*/
+
+.max-width-large{
+    max-width: 900px;
+}
+
+/* 
+==================================
+PADDING
+==================================
+*/
+
+.padding-up-down-large{
+    padding: 3rem 0rem;
+}
+
+.padding-top-medium{
+    padding-top: 3rem;
+}
+
+.padding-top-large{
+    padding-top: 5rem;
+}
+
+.padding-bottom-large{
+    padding-bottom: 5rem;
+}
+
+/* 
+==================================
+MARGIN
+==================================
+*/
+.margin-left-small{
+    margin-left: .5rem;
+}
+
+.margin-top-medium{
+    margin-top: 2rem;
+}
+
+.margin-top-large{
+    margin-top: 4rem;
+}
+
+.margin-none{
+    margin: 0rem;
+}
+
+/* 
+==================================
+FLEX
+==================================
+*/
+
+.flex-2-columns{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.flex-gap-large{
+    gap: 2rem;
+}

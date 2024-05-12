@@ -9,7 +9,7 @@
             <form class="form-avalon margin-auto" th:action="@{/signup}" th:object="${user}" method="post">
                 <div class="form-header">
                     <h2>Create a new account</h2>
-                    <p style="font-size: 14px;">Already have an account? <a href="/login" class="link-style">Login.</a></p>
+                    <p style="font-size: 14px;">Already have an account? <a th:href="@{/login}" class="link-style">Login.</a></p>
                 </div>
                 
                 <div class="field-set"

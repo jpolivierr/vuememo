@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
 import com.appvenir.vuememo.domain.users.UserLogin;
 import com.appvenir.vuememo.domain.users.UserLoginValidator;
 import com.appvenir.vuememo.exception.user.UserNotFoundException;

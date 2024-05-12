@@ -1,0 +1,24 @@
+<header class="border-bottom">
+    <div class="container main-header">
+        <h3 class="main-text-color margin-none">VueMemo</h3>
+        <ul class="nav-links hide-on-medium">
+            <a th:href="@{/}"><li>Home</li></a>
+            <a><li>Solutions</li></a>
+            <a><li>Explore</li></a>
+            <a><li>About</li></a>
+            <a><li>Pricing</li></a>
+        </ul>
+        <div class="buttons-wrapper hide-on-medium">
+            <a th:href="@{/login}">
+                <button class="button secondary-button">Log in</button>
+            </a>
+            <a th:href="@{/signup}">
+                <button class="button main-button">Signup</button>
+            </a>
+        </div>
+
+        <menu class="hide-on-large">
+            <i class="fa-solid fa-bars"></i>
+        </menu>
+    </div>
+</header>

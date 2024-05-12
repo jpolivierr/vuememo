@@ -56,7 +56,8 @@ public class SecurityConfig {
                             "/logout?**",
                             "/signup/**",
                             "/login/**",
-                            "/assets/**"
+                            "/assets/**",
+                            "/"
                         };
     }
     
