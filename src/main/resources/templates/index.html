@@ -24,18 +24,18 @@
                  </a>
                 
             </div>
-            <figure class="margin-top-large center-content">
+            <figure class="margin-top-large center-content" style="max-width: 890px;">
                 <img src="https://clickup.com/assets/home-test/projects.png" />
             </figure>
         </div>
     </section>
 
-    <section class="padding-up-down-large padding-top-large light-bk">
-        <div class="container flex-2-columns flex-gap-large">
+    <section class="padding-up-down-xlarge">
+        <div class="container flex-2-columns flex-gap-xlarge">
             <div>
-                <h2>Hit every deadline</h2>
+                <h2>Effortless <span class="main-text-color">collaboration</span></h2>
                 <p>
-                    Link notes containing important action items to your calendar events, and Evernote will surface the info you need—right when you need it.
+                    Use vuememo to capture more than just words. Harness the power of the internet with Web Clipper. Scan and store your important files, documents, and images. Remind yourself how awesome you are with audio notes.
                 </p>
                 <div class="cta-container margin-top-medium">
                     <a th:href="@{/signup}">
@@ -60,5 +60,41 @@
 
         </div>
     </section>
+
+    <section class="padding-up-down-xlarge">
+        <div class="container flex-2-columns flex-gap-xlarge column-reverse-on-mobile">
+
+            <figure class="max-width-large center-content">
+                <img src="https://clickup.com/assets/home-test/projects.png" />
+            </figure>
+
+
+            <div>
+                <h2>Create <span class="main-text-color">your way</span></h2>
+                <p>
+                    Do you scribble great ideas on napkins and sticky notes? Is precise filing more your style? OneNote's got you covered whatever way you shape your thoughts. Type, write or draw with the free form feel of pen to paper. Search and clip from the web to picture ideas.
+                </p>
+                <div class="cta-container margin-top-medium">
+                    <a th:href="@{/signup}">
+                       <button class="button main-button">
+                        Get Started. It's FREE
+                        <i class="fa-solid fa-arrow-right-long margin-left-small"></i>
+                    </button>
+                    </a>
+    
+                    <a th:href="@{/}">
+                        <button class="button alt-button">
+                         See a Demo
+                     </button>
+                     </a>
+                    
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <fragment th:replace="~{footer/footer}"></fragment>
+
 </body>
 </html>
