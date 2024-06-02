@@ -5,7 +5,7 @@
 
     <fragment th:replace="~{navigation/main-navigation}"></fragment>
 
-    <section class="padding-top-medium padding-bottom-large">
+    <section class="padding-up-down-xlarge">
         <div class="container center-text">
             <h1>Your All-in-One Task <br> <span class="main-text-color">Management</span> Solution </h1>
             <h4 class="center-content">Your workflow take control of your tasks, boost productivity, and achive success with our comprehensive and intuitive Task Management Solution</h4>
@@ -95,6 +95,66 @@
     </section>
 
     <fragment th:replace="~{footer/footer}"></fragment>
+
+    <div id="modal-overlay" class="modal-overlay hide"></div>
+
+    <div id="side-nav" class="side-nav hide">
+
+        <div class="side-nav-header display-flex">
+            <div class="buttons-wrapper">
+                <a th:href="@{/login}">
+                    <button class="button alt-button">Log in</button>
+                </a>
+                <a th:href="@{/signup}">
+                    <button class="button main-button">Signup</button>
+                </a>
+            </div>
+
+            <div id="close-side-nav" class="close-side-nav button">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+        </div>
+
+        <div class="side-nav-links">
+
+            <div class="list-item-option flex-space-between margin-top-medium flex-column">
+                <ul id="list-items-collapse" class="list-items-collapse">
+                    <h5>
+                        Navigation <i class="fa-solid fa-chevron-right"></i>
+                    </h5>
+                    <li>Solutions</li>
+                    <li>Explore</li>
+                    <li>About</li>
+                    <li>Contact</li>
+                </ul>
+
+                <ul id="list-items-collapse" class="list-items-collapse">
+                    <h5>Solutions <i class="fa-solid fa-chevron-right"></i></h5>
+                    <li>Why VueMemo</li>
+                    <li>Self organization</li>
+                    <li>Productivity</li>
+                </ul>
+
+                <ul id="list-items-collapse" class="list-items-collapse">
+                    <h5>Services <i class="fa-solid fa-chevron-right"></i></h5>
+                    <li>VueMemo Clipper</li>
+                    <li>Email to VueMemo</li>
+                    <li>Office Lens</li>
+                    <li>Featured Apps</li>
+                </ul>
+    
+                <ul id="list-items-collapse" class="list-items-collapse">
+                    <h5>Our Story <i class="fa-solid fa-chevron-right"></i></h5>
+                    <li>Benefits</li>
+                    <li>Careers</li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script th:src="@{/assets/js/main.js}" ></script>
 
 </body>
 </html>
