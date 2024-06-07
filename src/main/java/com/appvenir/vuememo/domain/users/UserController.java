@@ -25,10 +25,8 @@ public class UserController {
     //Create user
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveUser(@RequestBody User user){
-        UserValidator userValidator = new UserValidator(user);
-        userValidator.validate();
-        userService.saveUser(user);
+    public void saveUser(@Valid @RequestBody UserRegistration user){
+        userService.saveUser(new User(user));
     }
 
     //Get user

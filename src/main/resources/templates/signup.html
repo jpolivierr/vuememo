@@ -13,7 +13,7 @@
                 </div>
                 
                 <div class="field-set"
-                     th:classappend="${formError.containsKey('name') ? 'input-error' : ''}"
+                     th:classappend="${formError.containsKey('fullName') ? 'input-error' : ''}"
                 >
                     <label for="name">Full name</label>
                     <input 
@@ -23,7 +23,7 @@
                             th:field="*{name}" 
                             placeholder="John Smith"
                             />
-                    <span class="error-message" th:text="${formError['name']}"></span>
+                    <span class="error-message" th:text="${formError['fullName']}"></span>
                 </div>
 
                 <div class="field-set"

@@ -1,34 +1,53 @@
 package com.appvenir.vuememo.domain.users;
 
-import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-import com.appvenir.vuememo.helper.validator.Rule;
-import com.appvenir.vuememo.helper.validator.Validator;
+import com.appvenir.vuememo.exception.validationException.ValidationException;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 @Getter
-@RequiredArgsConstructor
-public class UserValidator extends Validator {
+public class UserValidator{
 
-    private final User user;
-   
-    public List<Rule> rules(){
+    // private final UserLogin userLogin;
+    private final Validator validator;
 
-        Rule name = new Rule("name", user.getName())
-                                .notNull("Full name is required");
-
-        Rule emailRule = new Rule("email", user.getEmail())
-                                .isValidEmail("Email is not valid");
-
-        Rule passwordRule = new Rule("password", user.getPassword())
-                                 .notNull("Password is required")
-                                 .minChar(8, "Password must contain 8 characters minimum");
-
-        return List.of(name, emailRule, passwordRule);                
+    public UserValidator() {
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        this.validator = factory.getValidator();
 
     }
 
+    public void validate(UserLogin userLogin) throws ValidationException {
+        Set<ConstraintViolation<UserLogin>> violations = validator.validate(userLogin);
+        if (!violations.isEmpty()) {
+            Map<String, String> errors = violations.stream()
+                .collect(Collectors.toMap(
+                    violation -> violation.getPropertyPath().toString(),
+                    ConstraintViolation::getMessage,
+                    (existing, replacement) -> existing
+                ));
+            throw new ValidationException(errors);
+        }
+    }
+
+    public void validate(UserRegistration userRegistration) throws ValidationException {
+        Set<ConstraintViolation<UserRegistration>> violations = validator.validate(userRegistration);
+        if (!violations.isEmpty()) {
+            Map<String, String> errors = violations.stream()
+                .collect(Collectors.toMap(
+                    violation -> violation.getPropertyPath().toString(),
+                    ConstraintViolation::getMessage,
+                    (existing, replacement) -> existing
+                ));
+            throw new ValidationException(errors);
+        }
+    }
     
 }

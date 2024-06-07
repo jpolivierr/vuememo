@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.appvenir.vuememo.domain.users.User;
-import com.appvenir.vuememo.domain.users.UserService;
 import com.appvenir.vuememo.domain.users.UserValidator;
+import com.appvenir.vuememo.domain.users.UserRegistration;
+import com.appvenir.vuememo.domain.users.UserService;
 import com.appvenir.vuememo.exception.user.EmailExistsException;
 import com.appvenir.vuememo.exception.validationException.ValidationException;
 import com.appvenir.vuememo.web.PageTemplate.DefaultAttribute;
@@ -23,6 +24,7 @@ import com.appvenir.vuememo.web.PageTemplate.PageTemplate;
 public class SignUp extends PageTemplate {
 
     private final UserService userService;
+    private final UserValidator userValidator = new UserValidator();
 
     public SignUp(UserService userService){
         super("Vuememo | Signup");
@@ -38,12 +40,12 @@ public class SignUp extends PageTemplate {
     }
 
     @PostMapping
-    public String signup(@ModelAttribute("user") User user, Model model){
-        UserValidator userValidator = new UserValidator(user);
+    public String signup(@ModelAttribute("UserRegistration") UserRegistration userRegistration, Model model){
+        User user = new User(userRegistration);
         model.addAttribute("user", user);
         try {
-            userValidator.validate();
-            userService.saveUser(user);
+            userValidator.validate(userRegistration);
+            userService.saveUser(new User(userRegistration));
             return "redirect:/login";
         } 
         catch (EmailExistsException e) {

@@ -5,7 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import com.appvenir.vuememo.domain.users.UserLogin;
-import com.appvenir.vuememo.domain.users.UserLoginValidator;
+import com.appvenir.vuememo.domain.users.UserValidator;
 import com.appvenir.vuememo.exception.user.UserNotFoundException;
 import com.appvenir.vuememo.exception.validationException.ValidationException;
 import com.appvenir.vuememo.helper.paramBuilder.QueryParamBuilder;
@@ -22,7 +22,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebFilter(urlPatterns = "/login")
 public class LoginFilter implements Filter{
 
-    private final UserLoginValidator userLoginValidator = new UserLoginValidator();
+    private final UserValidator userValidator = new UserValidator();
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -38,7 +38,7 @@ public class LoginFilter implements Filter{
                         try {
 
                             UserLogin userLogin = new UserLogin(email, password);
-                            userLoginValidator.validate(userLogin);
+                            userValidator.validate(userLogin);
                             chain.doFilter(request, response);
 
                         } 

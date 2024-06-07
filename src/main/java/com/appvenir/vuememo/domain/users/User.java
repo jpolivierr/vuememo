@@ -33,5 +33,11 @@ public class User extends BaseEntity{
         this.name = name;
         this.email = email;
     }   
+
+    public User(UserRegistration userRegistration){
+        this.name = userRegistration.getFullName();
+        this.email = userRegistration.getEmail();
+        this.password = userRegistration.getPassword();
+    }  
     
 }
