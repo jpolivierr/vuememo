@@ -27,11 +27,11 @@ public class MvcControllerExceptionHandler {
         return "404";
     }
 
-    @ExceptionHandler(value = {Exception.class})
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public String handleException(Exception ex){
-        return "500";
-    }
+    // @ExceptionHandler(value = {Exception.class})
+    // @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    // public String handleException(Exception ex){
+    //     return "500";
+    // }
 
     
     

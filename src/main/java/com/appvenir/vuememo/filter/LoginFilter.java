@@ -22,6 +22,8 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebFilter(urlPatterns = "/login")
 public class LoginFilter implements Filter{
 
+    private final UserLoginValidator userLoginValidator = new UserLoginValidator();
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
@@ -31,20 +33,19 @@ public class LoginFilter implements Filter{
 
                 if ("POST".equalsIgnoreCase(httpRequest.getMethod()) && "/login".startsWith(httpRequest.getServletPath())){
 
-                        
                         String email = httpRequest.getParameter("email");
                         String password = httpRequest.getParameter("password");
                         try {
 
-                    
-                            new UserLoginValidator(new UserLogin(email, password)).validate();;
-                        
-                
-                           chain.doFilter(request, response);
+                            UserLogin userLogin = new UserLogin(email, password);
+                            userLoginValidator.validate(userLogin);
+                            chain.doFilter(request, response);
 
                         } 
                         catch (ValidationException e){
                                 var errors = e.getErrors();
+                                System.out.println(errors);
+                                System.out.println("processing453453453...");
 
                                 Map<String, String> params = new LinkedHashMap<>();
                                 params.put("email", email);
