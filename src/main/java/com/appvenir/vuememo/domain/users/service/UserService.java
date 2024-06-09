@@ -1,4 +1,4 @@
-package com.appvenir.vuememo.domain.users;
+package com.appvenir.vuememo.domain.users.service;
 
 import java.util.Optional;
 
@@ -6,6 +6,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.appvenir.vuememo.domain.users.dto.UserDto;
+import com.appvenir.vuememo.domain.users.model.User;
+import com.appvenir.vuememo.domain.users.repository.UserRepository;
 import com.appvenir.vuememo.exception.user.EmailExistsException;
 import com.appvenir.vuememo.exception.user.UserNotFoundException;
 

@@ -1,10 +1,12 @@
-package com.appvenir.vuememo.domain.users;
+package com.appvenir.vuememo.security;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.appvenir.vuememo.domain.users.model.User;
 
 import lombok.RequiredArgsConstructor;
 

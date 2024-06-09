@@ -15,6 +15,11 @@ import org.mockito.Mock;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.appvenir.vuememo.domain.users.dto.UserDto;
+import com.appvenir.vuememo.domain.users.model.User;
+import com.appvenir.vuememo.domain.users.repository.UserRepository;
+import com.appvenir.vuememo.domain.users.service.UserService;
+
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
 

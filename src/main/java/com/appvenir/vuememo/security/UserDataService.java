@@ -1,10 +1,11 @@
-package com.appvenir.vuememo.domain.users;
+package com.appvenir.vuememo.security;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.appvenir.vuememo.domain.users.repository.UserRepository;
 import com.appvenir.vuememo.exception.user.UserNotFoundException;
 
 import lombok.RequiredArgsConstructor;

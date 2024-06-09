@@ -21,24 +21,14 @@ public class UserValidator{
     public UserValidator() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         this.validator = factory.getValidator();
-
     }
 
-    public void validate(UserLogin userLogin) throws ValidationException {
-        Set<ConstraintViolation<UserLogin>> violations = validator.validate(userLogin);
-        if (!violations.isEmpty()) {
-            Map<String, String> errors = violations.stream()
-                .collect(Collectors.toMap(
-                    violation -> violation.getPropertyPath().toString(),
-                    ConstraintViolation::getMessage,
-                    (existing, replacement) -> existing
-                ));
-            throw new ValidationException(errors);
-        }
+    public <T> void validate(T userRegistration) throws ValidationException {
+        Set<ConstraintViolation<T>> violations = validator.validate(userRegistration);
+        checkErrors(violations);
     }
 
-    public void validate(UserRegistration userRegistration) throws ValidationException {
-        Set<ConstraintViolation<UserRegistration>> violations = validator.validate(userRegistration);
+    public <T> void checkErrors(Set<ConstraintViolation<T>> violations){
         if (!violations.isEmpty()) {
             Map<String, String> errors = violations.stream()
                 .collect(Collectors.toMap(

@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import com.appvenir.vuememo.domain.users.UserLogin;
 import com.appvenir.vuememo.domain.users.UserValidator;
+import com.appvenir.vuememo.domain.users.dto.UserLoginDto;
 import com.appvenir.vuememo.exception.user.UserNotFoundException;
 import com.appvenir.vuememo.exception.validationException.ValidationException;
 import com.appvenir.vuememo.helper.paramBuilder.QueryParamBuilder;
@@ -37,7 +37,7 @@ public class LoginFilter implements Filter{
                         String password = httpRequest.getParameter("password");
                         try {
 
-                            UserLogin userLogin = new UserLogin(email, password);
+                            UserLoginDto userLogin = new UserLoginDto(email, password);
                             userValidator.validate(userLogin);
                             chain.doFilter(request, response);
 

@@ -1,4 +1,6 @@
-package com.appvenir.vuememo.domain.users;
+package com.appvenir.vuememo.domain.users.dto;
+
+import com.appvenir.vuememo.domain.users.model.User;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

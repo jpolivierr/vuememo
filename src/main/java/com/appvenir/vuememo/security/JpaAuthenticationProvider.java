@@ -8,8 +8,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import com.appvenir.vuememo.domain.users.UserDataService;
-
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

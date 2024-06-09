@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.appvenir.vuememo.domain.users.User;
 import com.appvenir.vuememo.domain.users.UserValidator;
-import com.appvenir.vuememo.domain.users.UserRegistration;
-import com.appvenir.vuememo.domain.users.UserService;
+import com.appvenir.vuememo.domain.users.dto.UserRegistrationDto;
+import com.appvenir.vuememo.domain.users.model.User;
+import com.appvenir.vuememo.domain.users.service.UserService;
 import com.appvenir.vuememo.exception.user.EmailExistsException;
 import com.appvenir.vuememo.exception.validationException.ValidationException;
 import com.appvenir.vuememo.web.PageTemplate.DefaultAttribute;
@@ -40,7 +40,7 @@ public class SignUp extends PageTemplate {
     }
 
     @PostMapping
-    public String signup(@ModelAttribute("UserRegistration") UserRegistration userRegistration, Model model){
+    public String signup(@ModelAttribute("UserRegistration") UserRegistrationDto userRegistration, Model model){
         User user = new User(userRegistration);
         model.addAttribute("user", user);
         try {

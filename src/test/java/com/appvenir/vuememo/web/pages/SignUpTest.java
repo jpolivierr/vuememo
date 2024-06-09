@@ -13,8 +13,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.appvenir.vuememo.domain.users.User;
-import com.appvenir.vuememo.domain.users.UserService;
+import com.appvenir.vuememo.domain.users.model.User;
+import com.appvenir.vuememo.domain.users.service.UserService;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @ExtendWith(MockitoExtension.class)

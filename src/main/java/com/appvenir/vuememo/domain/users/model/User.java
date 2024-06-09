@@ -1,6 +1,7 @@
-package com.appvenir.vuememo.domain.users;
+package com.appvenir.vuememo.domain.users.model;
 
 import com.appvenir.vuememo.domain.baseEntity.BaseEntity;
+import com.appvenir.vuememo.domain.users.dto.UserRegistrationDto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -34,7 +35,7 @@ public class User extends BaseEntity{
         this.email = email;
     }   
 
-    public User(UserRegistration userRegistration){
+    public User(UserRegistrationDto userRegistration){
         this.name = userRegistration.getFullName();
         this.email = userRegistration.getEmail();
         this.password = userRegistration.getPassword();

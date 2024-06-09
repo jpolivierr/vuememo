@@ -1,4 +1,4 @@
-package com.appvenir.vuememo.domain.users;
+package com.appvenir.vuememo.domain.users.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.appvenir.vuememo.domain.users.dto.UserDto;
+import com.appvenir.vuememo.domain.users.dto.UserRegistrationDto;
+import com.appvenir.vuememo.domain.users.model.User;
+import com.appvenir.vuememo.domain.users.service.UserService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +30,7 @@ public class UserController {
     //Create user
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveUser(@Valid @RequestBody UserRegistration user){
+    public void saveUser(@Valid @RequestBody UserRegistrationDto user){
         userService.saveUser(new User(user));
     }
 

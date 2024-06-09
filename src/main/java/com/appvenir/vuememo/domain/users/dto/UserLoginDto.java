@@ -1,4 +1,4 @@
-package com.appvenir.vuememo.domain.users;
+package com.appvenir.vuememo.domain.users.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -8,10 +8,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public class UserRegistration{
-
-    @NotBlank(message = "Your full name is required")
-    private final String fullName;
+public class UserLoginDto{
 
     @Email(message = "Email is not valid")
     @NotBlank(message = "Email is required")
