@@ -22,6 +22,7 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         return http
+                    .csrf( csrf -> csrf.disable())
                     .addFilterBefore(new LoginFilter(), UsernamePasswordAuthenticationFilter.class)
                     .authorizeHttpRequests( auth -> auth
                                        .requestMatchers(allowedPath()).permitAll()
@@ -57,6 +58,7 @@ public class SecurityConfig {
                             "/signup/**",
                             "/login/**",
                             "/assets/**",
+                            "/notes/**",
                             "/"
                         };
     }
