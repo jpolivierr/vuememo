@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.appvenir.vuememo.domain.note.dto.NoteDto;
 import com.appvenir.vuememo.domain.note.service.NoteService;
+import com.appvenir.vuememo.domain.users.model.User;
 
 import lombok.AllArgsConstructor;
 
@@ -24,7 +25,9 @@ public class NoteController {
     @ResponseStatus(HttpStatus.CREATED)
     public void createNote(@RequestBody NoteDto noteDto){
 
-        noteService.saveNote("jp@gmail.com", noteDto);
+        User user = new User();
+        user.setEmail("jp@gmail.com");
+        noteService.saveNote(user, noteDto);
 
     }
     

@@ -5,6 +5,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.appvenir.vuememo.domain.note.dto.NoteDto;
+import com.appvenir.vuememo.domain.note.model.Note;
 import com.appvenir.vuememo.domain.note.repository.NoteRepository;
 import com.appvenir.vuememo.domain.users.model.User;
 import com.appvenir.vuememo.domain.users.service.UserService;
@@ -21,24 +22,31 @@ public class NoteService {
     private final UserService userService;
 
     @Transactional
-    public void saveNote(String userEmail, NoteDto noteDto){
+    public void saveNote(User user, NoteDto noteDto){
 
-        User user = userService.findByEmail(userEmail);
+        User currentUser = userService.findByEmail(user.getEmail());
+
+         handleSaveNote(noteDto, () -> {
+            Note note = noteDto.toModel(currentUser);
+            noteRepository.save(note);
+        });
+       
+    }
+    
+    private void handleSaveNote (NoteDto noteDto, Runnable saveFunction){
         try {
 
-            noteRepository.save(noteDto.toModel(user));
+            saveFunction.run();
 
         } catch (DataIntegrityViolationException e) {
             
             if(e.getCause() instanceof ConstraintViolationException){
                 
-                throw new NoteTitleAlreadyExistsException("Title `" + noteDto.getTitle() + "` already exist.");
+                 throw new NoteTitleAlreadyExistsException("The title `" + noteDto.getTitle() + "` already exist.");
             }
 
             throw e;
 
         }
-       
     }
-    
 }
