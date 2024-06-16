@@ -1,15 +1,11 @@
 package com.appvenir.vuememo.domain.note.controller;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import com.appvenir.vuememo.domain.note.dto.NoteDto;
 import com.appvenir.vuememo.domain.note.service.NoteService;
-import com.appvenir.vuememo.domain.users.model.User;
 
 import lombok.AllArgsConstructor;
 
@@ -23,12 +19,20 @@ public class NoteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createNote(@RequestBody NoteDto noteDto){
+    public ResponseEntity<NoteDto> createNote(@RequestBody NoteDto noteDto){
 
-        User user = new User();
-        user.setEmail("jp@gmail.com");
-        noteService.saveNote(user, noteDto);
+    NoteDto newNoteDto = noteService.saveNote(noteDto);
+    return ResponseEntity.ok(newNoteDto);
 
     }
+
+   @PutMapping
+   @ResponseStatus(HttpStatus.OK)
+   public ResponseEntity<NoteDto> updateNote(@RequestBody NoteDto noteDto){
+
+    NoteDto newNoteDto = noteService.updateNote(noteDto);
+    return ResponseEntity.ok(newNoteDto);
+
+   }
     
 }

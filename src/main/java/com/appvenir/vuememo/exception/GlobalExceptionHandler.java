@@ -41,6 +41,7 @@ public class GlobalExceptionHandler {
                                             .message(ex.getMessage())
                                             .path(request.getRequestURI())
                                             .build();
+
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
     

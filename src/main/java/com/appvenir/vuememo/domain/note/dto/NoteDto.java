@@ -1,14 +1,17 @@
 package com.appvenir.vuememo.domain.note.dto;
 
 import com.appvenir.vuememo.domain.note.model.Note;
-import com.appvenir.vuememo.domain.users.model.User;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class NoteDto {
+
+    private Long id;
     
     private String title;
 
@@ -16,15 +19,11 @@ public class NoteDto {
 
     private String content;
 
-    public Note toModel(User user){
-
-        Note note = new Note(
-            this.title,
-            this.description,
-            this.content,
-            user
-        );
-       
-        return note;
+    public NoteDto(Note note){
+        this.id = note.getId();
+        this.title = note.getTitle();
+        this.description = note.getDescription();
+        this.content = note.getContent();
     }
+
 }

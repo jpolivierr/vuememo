@@ -11,12 +11,15 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "notes")
 @Getter
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Note extends BaseEntity{
 
     @Column(name = "title", unique = true)
