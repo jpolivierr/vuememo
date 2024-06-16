@@ -1,5 +1,7 @@
 package com.appvenir.vuememo.domain.note.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,11 @@ public class NoteController {
     @GetMapping("/{id}")
     public ResponseEntity<NoteDto> getNote(@PathVariable("id") Long id){
         return ResponseEntity.ok().body( noteService.getNote(id));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<NoteDto>> getAllNotes(){
+        return ResponseEntity.ok().body( noteService.getAllNotes());
     }
 
     @PostMapping
