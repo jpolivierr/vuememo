@@ -17,6 +17,11 @@ public class NoteController {
     private final NoteService noteService;
 
 
+    @GetMapping("/{id}")
+    public ResponseEntity<NoteDto> getNote(@PathVariable("id") Long id){
+        return ResponseEntity.ok().body( noteService.getNote(id));
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<NoteDto> createNote(@RequestBody NoteDto noteDto){
@@ -32,6 +37,14 @@ public class NoteController {
 
     NoteDto newNoteDto = noteService.updateNote(noteDto);
     return ResponseEntity.ok(newNoteDto);
+
+   }
+
+   @DeleteMapping("/{noteId}")
+   @ResponseStatus(HttpStatus.OK)
+   public void deleteNote(@PathVariable("id") Long id){
+ 
+     noteService.deleteNote(id);
 
    }
     

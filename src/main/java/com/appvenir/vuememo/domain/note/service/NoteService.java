@@ -12,12 +12,14 @@ import com.appvenir.vuememo.domain.note.model.Note;
 import com.appvenir.vuememo.domain.note.repository.NoteRepository;
 import com.appvenir.vuememo.domain.users.model.User;
 import com.appvenir.vuememo.domain.users.service.UserService;
+import com.appvenir.vuememo.exception.note.NoteNotFoundException;
 import com.appvenir.vuememo.exception.note.NoteTitleAlreadyExistsException;
 
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 @RequiredArgsConstructor
@@ -39,6 +41,28 @@ public class NoteService {
 
     }
 
+    public NoteDto getNote(Long id){
+
+        User currentUser = userService.findByEmail(DemoUser.get().getEmail());
+
+        Optional<Note> currentNote = noteRepository.findNoteByUser(id, currentUser.getId());
+
+        Note note = currentNote.orElseThrow( () -> new NoteNotFoundException());
+
+        return NoteMapper.toDto(note);
+
+    }
+
+    public List<NoteDto> getAllNotes(){
+
+        User currentUser = userService.findByEmail(DemoUser.get().getEmail());
+
+        List<Note> notes = noteRepository.findAllByUser(currentUser.getId());
+
+        return notes.stream().map(NoteMapper::toDto).toList();
+
+    }
+
     @Transactional
     public NoteDto updateNote(NoteDto noteDto){
 
@@ -53,8 +77,18 @@ public class NoteService {
     }
 
     public Note findNote(Long id){
-        return noteRepository.findById(id).orElseThrow( () -> new EntityNotFoundException("Note not found"));
+        return noteRepository.findById(id).orElseThrow( () -> new NoteNotFoundException());
     }
+
+    public void deleteNote(Long id){
+        
+        Optional<Note> currentNote = noteRepository.findById(id);
+        if(!currentNote.isPresent())
+             throw new NoteNotFoundException("A note with id `" + id +"` was note found");
+ 
+         noteRepository.deleteById(id);
+ 
+     }
 
     @Transactional
     private NoteDto handleSaveNote (NoteDto noteDto, Supplier<NoteDto> saveFunction){
@@ -73,4 +107,5 @@ public class NoteService {
 
         }
     }
+
 }

@@ -17,6 +17,20 @@ import jakarta.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class NoteExceptionHandler {
 
+    @ExceptionHandler(value = {NoteNotFoundException.class})
+    public ResponseEntity<Object> noteNotFoundExceptionExceptionHandler(NoteNotFoundException ex, HttpServletRequest request){
+
+        ErrorResponse errorResponse = ErrorResponse.builder()
+                                            .timestamp(LocalDateTime.now())
+                                            .status(HttpStatus.NOT_FOUND.value())
+                                            .error(HttpStatus.NOT_FOUND.getReasonPhrase())
+                                            .message(ex.getMessage())
+                                            .path(request.getRequestURI())
+                                            .build();
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler(value = {NoteTitleAlreadyExistsException.class})
     public ResponseEntity<Object> noteTitleAlreadyExistsExceptionHandler(NoteTitleAlreadyExistsException ex, HttpServletRequest request){
 
