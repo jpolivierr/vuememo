@@ -35,7 +35,8 @@ public class NoteService {
         User currentUser = userService.findByEmail(DemoUser.get().getEmail());
 
          return handleSaveNote(noteDto, () -> {
-             Note note = NoteMapper.toModel(noteDto, currentUser);
+             Note note = NoteMapper.toModel(noteDto);
+             note.setUser(currentUser);
             return NoteMapper.toDto(noteRepository.save(note));
         });
 
