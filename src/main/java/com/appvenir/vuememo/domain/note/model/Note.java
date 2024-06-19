@@ -16,6 +16,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "notes" , uniqueConstraints = {
@@ -25,6 +26,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Note extends BaseEntity{
 
     @Column(name = "title")
@@ -40,6 +42,9 @@ public class Note extends BaseEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "notebook_id", nullable = true)
     private NoteBook noteBook;
+
+    @Column(name = "notebook_id", insertable = false, updatable = false)
+    private Long noteBookId;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)

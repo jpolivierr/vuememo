@@ -7,7 +7,7 @@ public class DemoUser {
     public static User get(){
         User user = new User();
         user.setName("Frederic");
-        user.setEmail("jp@gmail.com");
+        user.setEmail("js@gmail.com");
         return user;
     }
 }

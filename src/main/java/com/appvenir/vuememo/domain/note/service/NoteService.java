@@ -99,7 +99,7 @@ public class NoteService {
 
         } catch (DataIntegrityViolationException e) {
             
-            if(e.getCause() instanceof ConstraintViolationException){
+            if(e.getCause() instanceof ConstraintViolationException && e.getMessage().contains("Duplicate entry")){
                 
                  throw new NoteTitleAlreadyExistsException("The title `" + noteDto.getTitle() + "` already exist.");
             }

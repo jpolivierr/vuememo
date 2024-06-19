@@ -49,7 +49,7 @@ public class NoteController {
 
    @DeleteMapping("/{noteId}")
    @ResponseStatus(HttpStatus.OK)
-   public void deleteNote(@PathVariable("id") Long id){
+   public void deleteNote(@PathVariable("noteId") Long id){
  
      noteService.deleteNote(id);
 

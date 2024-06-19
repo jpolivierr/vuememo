@@ -12,6 +12,8 @@ import lombok.Setter;
 public class NoteDto {
 
     private Long id;
+
+    private Long noteBookId;
     
     private String title;
 
@@ -24,6 +26,7 @@ public class NoteDto {
         this.title = note.getTitle();
         this.description = note.getDescription();
         this.content = note.getContent();
+        this.noteBookId = note.getNoteBookId();
     }
 
 }
