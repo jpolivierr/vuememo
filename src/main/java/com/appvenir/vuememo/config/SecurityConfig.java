@@ -59,7 +59,7 @@ public class SecurityConfig {
                             "/login/**",
                             "/assets/**",
                             "/notes/**",
-                            "/noteBooks/**",
+                            "/notebooks/**",
                             "/"
                         };
     }

@@ -1,6 +1,6 @@
 package com.appvenir.vuememo.domain.notebook.service;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -31,11 +31,34 @@ public class NoteBookService {
     private final NoteBookRepository noteBookRepository;
     private final NoteRepository noteRepository;
 
-    public NoteBook getNoteBookById(Long id){
+    public NoteBookDto getNoteBookById(Long id){
 
-        Optional<NoteBook> noteBook = noteBookRepository.findById(id);
+        NoteBook noteBook = noteBookRepository.findById(id)
+                                              .orElseThrow( () -> new EntityNotFoundException("Notebook not found"));
 
-        return noteBook.orElseThrow( () -> new EntityNotFoundException("Notebook not found"));
+        return NoteBookMapper.toDto(noteBook);
+
+    }
+
+    public List<NoteBookDto> getAllNoteBooks(){
+
+        User currentUser = userService.findByEmail(DemoUser.get().getEmail());
+
+        return noteBookRepository.findAllByUserId(currentUser.getId())
+                                                    .stream()
+                                                    .map(NoteBookMapper::toDto)
+                                                    .toList();
+    }
+
+    public NoteBookDto updateNoteBook(Long id, NoteBookDto noteBookDto){
+
+        userService.findByEmail(DemoUser.get().getEmail());
+
+        NoteBook currentNoteBook = noteBookRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Notebook was not found"));
+
+        currentNoteBook.setTitle(noteBookDto.getTitle());
+
+        return NoteBookMapper.toDto(noteBookRepository.save(currentNoteBook));
 
     }
 
@@ -69,7 +92,8 @@ public class NoteBookService {
 
             User currentUser = userService.findByEmail(DemoUser.get().getEmail());
 
-            NoteBook currentNoteBook = getNoteBookById(noteBookId);
+            NoteBook currentNoteBook = noteBookRepository.findById(noteBookId)
+                                                         .orElseThrow( () -> new EntityNotFoundException("Notebook not found"));;
 
             Note note = NoteMapper.toModel(noteDto, currentUser);
 
@@ -103,4 +127,13 @@ public class NoteBookService {
 
     }
     
+    public void deleteNoteBook(Long id){
+
+        userService.findByEmail(DemoUser.get().getEmail());
+
+        noteBookRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Notebook note found"));
+
+        noteBookRepository.deleteById(id);
+
+    }
 }
